@@ -29,7 +29,7 @@
       overflow-x: hidden;
     }
 
-    /* ── FONDO ── */
+    /* ── FONDO PROFUNDO ── */
     .bg {
       position: fixed; inset: 0; z-index: 0;
       background:
@@ -43,7 +43,7 @@
       to   { filter: brightness(1.15); }
     }
 
-    /* ── ESTRELLAS ── */
+    /* ── SISTEMA DE ESTRELLAS COMPLETO ── */
     .stars {
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
       background-image:
@@ -66,12 +66,8 @@
       to   { opacity: 1; }
     }
 
-    /* ── CANVAS PARTÍCULAS ── */
-    canvas {
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-    }
+    canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
 
-    /* ── CORAZONES ── */
     .hearts { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
     .heart  {
       position: absolute; bottom: -50px; opacity: 0;
@@ -84,7 +80,7 @@
       100% { transform: translateY(-105vh) rotate(8deg) scale(0.3); opacity: 0; }
     }
 
-    /* ── MAIN ── */
+    /* ── CONTENIDO PRINCIPAL ── */
     main {
       position: relative; z-index: 1;
       max-width: 740px;
@@ -92,7 +88,6 @@
       padding: 72px 28px 100px;
     }
 
-    /* ── HEADER ── */
     header {
       text-align: center;
       margin-bottom: 60px;
@@ -125,7 +120,6 @@
     header .line::after  { background: linear-gradient(90deg, var(--p2), transparent); }
     header .line span { color: var(--glow); font-size: 1rem; }
 
-    /* ── CARD ── */
     .card {
       background: linear-gradient(145deg,
         rgba(42,27,94,.4) 0%,
@@ -135,9 +129,7 @@
       border-radius: 22px;
       padding: 50px 46px;
       backdrop-filter: blur(14px);
-      box-shadow:
-        0 0 50px rgba(169,110,232,.07),
-        inset 0 1px 0 rgba(226,184,255,.1);
+      box-shadow: 0 0 50px rgba(169,110,232,.07), inset 0 1px 0 rgba(226,184,255,.1);
       opacity: 0;
       animation: fadeUp 1.3s cubic-bezier(.22,1,.36,1) .65s forwards;
     }
@@ -151,8 +143,8 @@
     }
     .card p:last-of-type { margin-bottom: 0; }
 
-    em   { font-style: italic; color: var(--accent); }
-    .s   { color: var(--sub); }
+    em { font-style: italic; color: var(--accent); }
+    .s { color: var(--sub); }
 
     .ornament {
       text-align: center;
@@ -162,7 +154,6 @@
       font-size: 1rem;
     }
 
-    /* ── FIRMA ── */
     .sign {
       text-align: right;
       margin-top: 46px;
@@ -183,48 +174,36 @@
       margin-top: 5px;
     }
 
-    /* ── BOTÓN REPRODUCCIÓN ── */
+    /* ── BOTÓN DE AUDIO CORREGIDO ── */
     #unmute-btn {
       position: fixed;
       bottom: 26px; right: 26px;
-      z-index: 200;
+      z-index: 1000;
       background: rgba(14,11,31,.88);
-      border: 1px solid rgba(200,160,255,.3);
+      border: 1px solid rgba(200,160,255,.4);
       border-radius: 50px;
-      padding: 9px 18px 9px 13px;
-      display: flex; align-items: center; gap: 8px;
-      color: var(--sub);
+      padding: 12px 22px;
+      display: flex; align-items: center; gap: 10px;
+      color: var(--accent);
       font-family: 'Jost', sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: .05em;
+      font-size: 0.8rem;
       cursor: pointer;
       backdrop-filter: blur(12px);
-      box-shadow: 0 4px 24px rgba(0,0,0,.4), 0 0 18px rgba(169,110,232,.12);
-      transition: all .25s ease;
-      animation: slideUp 1s cubic-bezier(.22,1,.36,1) 2s both;
+      box-shadow: 0 4px 24px rgba(0,0,0,.5);
+      transition: all .3s ease;
     }
-    #unmute-btn:hover {
-      border-color: rgba(200,160,255,.6);
-      color: var(--accent);
-      box-shadow: 0 4px 28px rgba(0,0,0,.4), 0 0 22px rgba(169,110,232,.3);
-    }
-    #unmute-btn svg { width: 15px; height: 15px; fill: currentColor; flex-shrink: 0; }
-    #unmute-btn.hidden { opacity: 0; pointer-events: none; }
+    #unmute-btn.pulse { animation: pulse-ring 2s infinite; }
+    #unmute-btn.hidden { opacity: 0; pointer-events: none; transform: translateY(20px); }
 
     @keyframes pulse-ring {
-      0%   { box-shadow: 0 4px 24px rgba(0,0,0,.4), 0 0 0 0 rgba(169,110,232,.45); }
-      70%  { box-shadow: 0 4px 24px rgba(0,0,0,.4), 0 0 0 10px rgba(169,110,232,0); }
-      100% { box-shadow: 0 4px 24px rgba(0,0,0,.4), 0 0 0 0 rgba(169,110,232,0); }
+      0% { box-shadow: 0 0 0 0 rgba(169,110,232,0.6); }
+      70% { box-shadow: 0 0 0 12px rgba(169,110,232,0); }
+      100% { box-shadow: 0 0 0 0 rgba(169,110,232,0); }
     }
-    #unmute-btn.pulse { animation: slideUp 1s cubic-bezier(.22,1,.36,1) 2s both, pulse-ring 2s 3s ease infinite; }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(26px); }
       to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes slideUp {
-      from { transform: translateY(50px); opacity: 0; }
-      to   { transform: translateY(0);    opacity: 1; }
     }
 
     @media (max-width: 580px) {
@@ -239,15 +218,13 @@
   <canvas id="c"></canvas>
   <div class="hearts" id="hearts"></div>
 
-  <audio id="local-audio" loop>
+  <audio id="local-audio" loop preload="auto">
     <source src="muci.mp3" type="audio/mpeg">
   </audio>
 
-  <button id="unmute-btn" class="pulse" title="Activar música">
-    <svg id="vol-icon" viewBox="0 0 24 24">
-      <path d="M16.5 12A4.5 4.5 0 0 0 14 7.97V9.4l2.45 2.45c.03-.28.05-.56.05-.85zM19 12c0 .94-.2 1.82-.54 2.64l1.51 1.51A9.9 9.9 0 0 0 21 12c0-4.28-2.68-7.92-6.5-9.32v2.16C17.18 5.96 19 8.79 19 12zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25A6.96 6.96 0 0 1 14 19.13V21.3c1.28-.38 2.44-1.03 3.41-1.88L19.73 21 21 19.73l-9-9L4.27 3zm7.73.73L10 6.46 12 8.46V3.73z"/>
-    </svg>
-    <span id="vol-label">Reproducir música</span>
+  <button id="unmute-btn" class="pulse">
+    <span id="vol-icon">▶</span>
+    <span id="vol-label">Escuchar música</span>
   </button>
 
   <main>
@@ -310,10 +287,11 @@
     const cols = ['#b08fd4','#9b6de0','#d8c4f0','#e0b8ff','#7c4dbb'];
 
     function resize() {
-      W = cv.width  = innerWidth;
+      W = cv.width = innerWidth;
       H = cv.height = innerHeight;
     }
-    addEventListener('resize', resize); resize();
+    window.addEventListener('resize', resize);
+    resize();
 
     for (let i = 0; i < 50; i++) pts.push({
       x: Math.random()*W, y: Math.random()*H,
@@ -350,27 +328,25 @@
     }
     setInterval(spawnHeart, 3500);
 
-    /* ── CONTROL DE AUDIO ── */
+    /* ── LÓGICA DE AUDIO MEJORADA ── */
     const btn = document.getElementById('unmute-btn');
     const audio = document.getElementById('local-audio');
-    const icon = document.getElementById('vol-icon');
     const label = document.getElementById('vol-label');
     let isPlaying = false;
 
-    const unmuteIconSVG = `<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z"/>`;
-
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', function() {
       if (!isPlaying) {
         audio.play().then(() => {
           isPlaying = true;
-          icon.innerHTML = unmuteIconSVG;
-          label.textContent = 'Sonido activo';
+          label.innerText = "Sonando...";
           btn.classList.remove('pulse');
           setTimeout(() => { btn.classList.add('hidden'); }, 2500);
-        }).catch(err => console.log("Esperando interacción..."));
+        }).catch(err => {
+          console.error("Audio block:", err);
+          label.innerText = "Error - Reintentar";
+        });
       }
     });
   </script>
 </body>
 </html>
-
